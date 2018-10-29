@@ -1,13 +1,10 @@
 #!/bin/bash
 
-keyword=("NativeVote" "NativeVoices" "GOTNV" "Honorthetreaties" "NativeLivesMatter" \
-"NativesforBernie" "NotYourMascot" "MMIW" "Appropriation" "idlenomore" "nlm" \
-"nativelivesmatter" "notyourmascot" "notamascot" "notacostume" "eonm" "saveoakflat" \
-"protectoakflat" "dearnonnatives" "changethemascot" "changethename" "turtleisland" \
-"indigenous" "NDN" "N8V" "Colonialism" "decolonize" "indigenize" "IndianCountry" \
-"ihs" "indianhealthservices" "greatplains" "nativehealth" "flyingwhilebrown" \
-"freeleonardpeltier" "drivingwhilebrown" "nohonor" "nohonorinracism" "nativeyouth" \
-"nativevote" "apachestronghold" "TAIRP" "stopdisenrollment")
+keyword=("Midterm" "Vote" "Politics" "District" "Senator" "Congress" "elect" "Representative" \
+"Sen" "Rep" "Republican" "Democrat" "Dem" "Rep" "Gov" "Debates" "Poli" "GOP" "Ballot" \
+"Register" "Incumbent" "Delegate" "Potus" "Scotus" "Supreme court" "GA" "KS" "TX" "NE" \
+"KY" "MO" "MS" "CA" "TN" "FL" "SD" "OK" "Georgia" "Kansas" "Texas" "Nebraska" "Kentucky" \
+"Missouri" "Mississippi" "California" "Tennessee" "Florida" "South Dakota" "Oklahoma")
 
 # $1 is the bash profile to source for crontab
 source $1
