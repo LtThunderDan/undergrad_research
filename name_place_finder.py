@@ -2,8 +2,6 @@ import os
 import sys
 import csv
 import argparse
-import time
-import progressbar
 
 # https://simplemaps.com/data/us-cities
 
@@ -27,22 +25,23 @@ def city_master_list():
 
 def find_city_state(TSV_file, TSV_output_file, city_list_indicies):
     with open(TSV_file, 'r') as temp:
-        with open(TSV_output_file, 'w') as results:
+        with open(TSV_output_file, 'w') as output:
             reader = csv.reader(temp, delimiter="\t")
-            writer = csv.writer(results, delimiter="\t")
+            writer = csv.writer(output, delimiter="\t")
+
+            counter = 0
 
             check_list = list(reader)
 
-            writer.writerow(['Tweet ID', 'Place Name', 'City ID'])
+            writer.writerow(['Tweet ID', 'Name Place', 'City ID'])
 
-            bar = progressbar.ProgressBar()
-            
-            for i in bar(range(len(check_list))):
+            for i in range(len(check_list)):
                 for j in range(len(city_state_abbr)):
                     if city_state_abbr[j] in check_list[i][3] or city_state_full[j] in check_list[i][3]:
-                        # print("Found", city_state_abbr[j])
                         writer.writerow([check_list[i][1], city_state_full[j], city_list_indicies[j][15]])
+                        # print("Found", city_state_full[j])
 
+            print("Finished with", TSV_file)
 
 
 def parse_args():
@@ -65,7 +64,9 @@ def parse_args():
     return args
 
 def main():
-    args  = parse_args()
+    args = parse_args()
+
+    print("Starting with", args.TSV_file)
 
     city_list_indicies = city_master_list()
 
