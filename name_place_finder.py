@@ -2,22 +2,23 @@ import os
 import sys
 import csv
 import argparse
+import glob
 
 # https://simplemaps.com/data/us-cities
 
 # twitter.com/anyuser/status/541278904204668929
 
 hashtag_state_full =  ['\'Alabama\'', '\'Alaska\'', '\'Arizona\'', '\'Arkansas\'', \
-'\'California\'', '\'Colorado\'', '\'Connecticut\'', '\'Delaware\'', '\'Florida\'', \
-'\'Georgia\'', '\'Hawaii\'', '\'Idaho\'', '\'Illinois\'' , '\'Indiana\'' , '\'Iowa' , \
-'\'Kansas\'' , '\'Kentucky\'' , '\'Louisiana\'' , '\'Maine\'' , '\'Maryland\'' , \
-'\'Massachusetts\'' , '\'Michigan\'' , '\'Minnesota\'' , '\'Mississippi\'' , \
-'\'Missouri\'' , '\'Montana\'' '\'Nebraska\'' , '\'Nevada' , '\'NewHampshire\'' , \
-'\'NewJersey\'' , '\'NewMexico\'' , '\'NewYork\'' , '\'NorthCarolina\'' , \
-'\'NorthDakota\'' , '\'Ohio' , '\'Oklahoma\'' , '\'Oregon\'' , '\'Pennsylvania\'', \
-'\'RhodeIsland\'', '\'SouthCarolina\'' , '\'SouthDakota\'' , '\'Tennessee\'' , \
-'\'Texas\'' , '\'Utah\'' , '\'Vermont\'' , '\'Virginia\'' , '\'Washington\'' , \
-'\'WestVirginia\'' , '\'Wisconsin\'', '\'Wyoming\'']
+    '\'California\'', '\'Colorado\'', '\'Connecticut\'', '\'Delaware\'', '\'Florida\'', \
+    '\'Georgia\'', '\'Hawaii\'', '\'Idaho\'', '\'Illinois\'' , '\'Indiana\'' , '\'Iowa' , \
+    '\'Kansas\'' , '\'Kentucky\'' , '\'Louisiana\'' , '\'Maine\'' , '\'Maryland\'' , \
+    '\'Massachusetts\'' , '\'Michigan\'' , '\'Minnesota\'' , '\'Mississippi\'' , \
+    '\'Missouri\'' , '\'Montana\'' '\'Nebraska\'' , '\'Nevada' , '\'NewHampshire\'' , \
+    '\'NewJersey\'' , '\'NewMexico\'' , '\'NewYork\'' , '\'NorthCarolina\'' , \
+    '\'NorthDakota\'' , '\'Ohio' , '\'Oklahoma\'' , '\'Oregon\'' , '\'Pennsylvania\'', \
+    '\'RhodeIsland\'', '\'SouthCarolina\'' , '\'SouthDakota\'' , '\'Tennessee\'' , \
+    '\'Texas\'' , '\'Utah\'' , '\'Vermont\'' , '\'Virginia\'' , '\'Washington\'' , \
+    '\'WestVirginia\'' , '\'Wisconsin\'', '\'Wyoming\'']
 
 hashtag_state_abbr = ['\'AL\'', '\'AK\'', '\'AZ\'', '\'AR\'', '\'CA\'', '\'CO\'', \
     '\'CT\'', '\'DE\'', '\'FL\'', '\'GA\'', '\'HI\'', '\'ID\'', '\'IL\'', '\'IN\'', \
@@ -26,6 +27,7 @@ hashtag_state_abbr = ['\'AL\'', '\'AK\'', '\'AZ\'', '\'AR\'', '\'CA\'', '\'CO\''
     '\'NM\'', '\'NY\'', '\'NC\'', '\'ND\'', '\'OH\'', '\'OK\'', '\'OR\'', '\'PA\'', \
     '\'RI\'', '\'SC\'', '\'SD\'', '\'TN\'', '\'TX\'', '\'UT\'', '\'VT\'', '\'VA\'', \
     '\'WA\'', '\'WV\'', '\'WI\'', '\'WY\'']
+
 
 
 
@@ -86,7 +88,7 @@ def parse_args():
     '''
     parser = argparse.ArgumentParser(description='Process some integers.')
 
-    parser.add_argument('TSV_file', type=str, help='Twitter stream TSV file to find city states.')
+    # parser.add_argument('TSV_file', type=str, help='Twitter stream TSV file to find city states.')
 
     parser.add_argument('TSV_output_file', type=str, help='Output file with found city states.')
 
@@ -96,9 +98,11 @@ def parse_args():
 def main():
     args = parse_args()
 
-    city_list_indicies = city_master_list()
+    ooze = glob.glob('2018_10_16_*_name_place.csv')
 
-    find_city_state(args.TSV_file, args.TSV_output_file, city_list_indicies)
+    for i in range(len(ooze)):
+        city_list_indicies = city_master_list()
+        find_city_state(ooze[i], args.TSV_output_file, city_list_indicies)
 
 if __name__ == "__main__":
     main()
